@@ -44,7 +44,17 @@ async function run() {
       res.send(result);
     })
    
-    
+    // api to get data with category query params
+    app.get('/cubes', async (req, res) => {
+      let query = {};
+      if (req.query.category) {
+        query = {category: req.query.category}
+      }
+      const result = await cubeCollection.find(query).toArray();
+      res.send(result)
+      console.log(query)
+    })
+
 
 
 
