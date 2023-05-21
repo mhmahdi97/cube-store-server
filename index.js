@@ -50,21 +50,24 @@ async function run() {
       if (req.query.category) {
         query = {category: req.query.category}
       }
+      else if (req.query.sellerEmail) {
+        query = {sellerEmail: req.query.sellerEmail}
+      }
       const result = await cubeCollection.find(query).toArray();
       res.send(result)
       console.log(query)
     })
 
     // api to get data with seller email query params
-    app.get('/cubes', async (req, res) => {
-      let query = {};
-      if (req.query.email) {
-        query = {email: req.query.email}
-      }
-      const result = await cubeCollection.find(query).toArray();
-      res.send(result)
-      console.log(query)
-    })
+    // app.get('/cubes', async (req, res) => {
+    //   let query = {};
+    //   if (req.query.cubeName) {
+    //     query = {cubeName: req.query.cubeName}
+    //   }
+    //   const result = await cubeCollection.find(query).toArray();
+    //   res.send(result)
+    //   console.log(query)
+    // })
 
 
 
