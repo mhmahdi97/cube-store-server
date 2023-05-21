@@ -55,8 +55,15 @@ async function run() {
       }
       const result = await cubeCollection.find(query).toArray();
       res.send(result)
-      console.log(query)
     })
+
+    // api to create data in databse
+    app.post('/all-cubes', async (req, res) => {
+            const addCube = req.body;
+            console.log(addCube);
+            const result = await cubeCollection.insertOne(addCube);
+            res.send(result);
+        });
 
     // api to get data with seller email query params
     // app.get('/cubes', async (req, res) => {
