@@ -55,6 +55,17 @@ async function run() {
       console.log(query)
     })
 
+    // api to get data with seller email query params
+    app.get('/cubes', async (req, res) => {
+      let query = {};
+      if (req.query.email) {
+        query = {email: req.query.email}
+      }
+      const result = await cubeCollection.find(query).toArray();
+      res.send(result)
+      console.log(query)
+    })
+
 
 
 
