@@ -97,8 +97,15 @@ async function run() {
       res.send(result);
     })
 
-    // api to sort cubes
-    app.get('/sorted-cubes', async (req, res) => {
+    // api to ascending sort cubes
+    app.get('/sorted-cubes-ascending', async (req, res) => {
+      const sorting = { "price": 1 }
+      const result = await cubeCollection.find(sorting).toArray();
+      res.send(result);
+    })
+    
+    // api to decending sort cubes
+    app.get('/sorted-cubes-ascending', async (req, res) => {
       const sorting = { "price": -1 }
       const result = await cubeCollection.find(sorting).toArray();
       res.send(result);
