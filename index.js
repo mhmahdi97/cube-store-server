@@ -59,10 +59,10 @@ async function run() {
 
     // api to create data in databse
     app.post('/all-cubes', async (req, res) => {
-            const addCube = req.body;
-            console.log(addCube);
-            const result = await cubeCollection.insertOne(addCube);
-            res.send(result);
+        const addCube = req.body;
+        console.log(addCube);
+        const result = await cubeCollection.insertOne(addCube);
+        res.send(result);
     });
 
     // api to delete a specific cube
@@ -94,6 +94,13 @@ async function run() {
         }
       }
       const result = await cubeCollection.updateOne(filter, cube, options);
+      res.send(result);
+    })
+
+    // api to sort cubes
+    app.get('/sorted-cubes', async (req, res) => {
+      const sorting = { "price": -1 }
+      const result = await cubeCollection.find(sorting).toArray();
       res.send(result);
     })
 
@@ -142,4 +149,3 @@ app.listen(port, () => {
     console.log(`Cube Store server is running on port ${port}`)
 })
 
-module.exports = app;
