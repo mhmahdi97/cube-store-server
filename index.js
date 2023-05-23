@@ -105,7 +105,7 @@ async function run() {
     })
     
     // api to decending sort cubes
-    app.get('/sorted-cubes-ascending', async (req, res) => {
+    app.get('/sorted-cubes-descending', async (req, res) => {
       const sorting = { "price": -1 }
       const result = await cubeCollection.find(sorting).toArray();
       res.send(result);
