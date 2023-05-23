@@ -63,7 +63,17 @@ async function run() {
             console.log(addCube);
             const result = await cubeCollection.insertOne(addCube);
             res.send(result);
-        });
+    });
+
+    // api to delete a specific cube
+    app.delete('/cubes/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await cubeCollection.deleteOne(query);
+            res.send(result);
+    })
+
+
 
     // api to get data with seller email query params
     // app.get('/cubes', async (req, res) => {
