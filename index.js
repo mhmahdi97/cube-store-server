@@ -73,6 +73,30 @@ async function run() {
             res.send(result);
     })
 
+    // api to update a specific cube
+    app.put('/cubes/:id', async (req, res) => {
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)};
+      const options ={upsert : true};
+      const updatedCube = req.body;
+    
+      const cube = {
+        $set: {
+            cubeName: updatedCube.cubeName,
+            category: updatedCube.category,
+            price: updatedCube.price,
+            ratings: updatedCube.ratings,
+            cubeImage1: updatedCube.cubeImage1,
+            quantity: updatedCube.quantity,
+            sellerName: updatedCube.sellerName,
+            sellerEmail: updatedCube.sellerEmail,
+            description: updatedCube.description
+        }
+      }
+      const result = await cubeCollection.updateOne(filter, cube, options);
+      res.send(result);
+    })
+
 
 
     // api to get data with seller email query params
