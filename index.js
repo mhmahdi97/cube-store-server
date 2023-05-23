@@ -141,3 +141,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Cube Store server is running on port ${port}`)
 })
+
+module.exports = app;
